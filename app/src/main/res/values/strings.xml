@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">WhatsAppEjercicio_1</string>
+    <string name="contacto2">Valeria La Sombra</string>
+    <string name="contacto3">Luna Veneno</string>
+    <string name="contacto4">Rosa Sangrienta</string>
+    <string name="contacto5">Isabella Furia</string>
+    <string name="contacto6">Selena Cazadora</string>
+    <string name="contacto7">Camila Viper</string>
+    <string name="contacto8">Maya Tormenta</string>
+    <string name="contacto9">Alma Malvada</string>
+    <string name="contacto10">Clara Asesina</string>
+    <string name="contacto11">Diana Raptor</string>
+    <string name="contacto12">Vera El Lince</string>
+    <string name="contacto13">Nina Descontrol</string>
+    <string name="contacto14">Patricia La Bestia</string>
+    <string name="contacto15">Jade Inquebrantable</string>
+    <string name="contacto16">Sofía Tornado</string>
+    <string name="contacto17">Valentina Serpiente</string>
+    <string name="contacto18">Lucía La Tigresa</string>
+    <string name="contacto19">Renata Tigre Blanco</string>
+    <string name="contacto20">Tatiana Veneno</string>
+</resources>
