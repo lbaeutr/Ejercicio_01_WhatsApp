@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -50,27 +51,45 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.whatsappejercicio_1.Navegacion.AppNavigation
+import com.example.whatsappejercicio_1.Navegacion.AppScreen
 import com.example.whatsappejercicio_1.ui.theme.WhatsAppEjercicio_1Theme
+
+//class MainActivity : ComponentActivity() {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        enableEdgeToEdge()
+//        setContent {
+//            WhatsAppEjercicio_1Theme {
+//
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                    val navController = rememberNavController()
+//
+//                    FinalWhatsApp(
+//                        modifier = Modifier.padding(innerPadding),
+//                        navController = navController
+//
+//                    )
+//                }
+//            }
+//        }
+//    }
+//}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            WhatsAppEjercicio_1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    FinalWhatsApp(
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            AppNavigation()
         }
     }
 }
 
 
 @Composable
-fun FinalWhatsApp(modifier: Modifier = Modifier) {
+fun FinalWhatsApp(modifier: Modifier = Modifier, navController: NavController) {
 
     Column(
         modifier = Modifier
@@ -120,7 +139,7 @@ fun FinalWhatsApp(modifier: Modifier = Modifier) {
         )
 
         // Campo de búsqueda
-        // Es una lista de mensajes simulada
+        // Lista de mensajes simulada
         var searchText by remember { mutableStateOf("") }
         val messages = listOf(
             R.string.contacto2,
@@ -237,9 +256,10 @@ fun FinalWhatsApp(modifier: Modifier = Modifier) {
                 .padding(16.dp)
         ) {
             items(messages) { messageRes ->
-                MessageRow(messageRes = messageRes)
+                MessageRow(messageRes = messageRes, navController = navController)
             }
         }
+
 
         // Box con iconos inferiores --> Novedades, Llamadas, Chats, Ajustes, Más..
         Box(
@@ -316,12 +336,14 @@ Esta funcion recibe un recurso de tipo Int y lo convierte a un texto
   , fuinciona de la siguiente manera ,  es una fila que contiene una imagen y un texto.
  */
 @Composable
-fun MessageRow(messageRes: Int) {
+fun MessageRow(messageRes: Int, navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
+
+        //todo prueba
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_profile),
@@ -334,6 +356,10 @@ fun MessageRow(messageRes: Int) {
 
         Text(
             text = stringResource(id = messageRes), // Convertir el recurso a texto
+            modifier = Modifier.clickable {
+                navController.navigate(AppScreen.ChatWhatsApp.route)
+
+            },
             fontWeight = FontWeight.Normal,
             color = Color.White
         )
@@ -345,6 +371,6 @@ fun MessageRow(messageRes: Int) {
 @Composable
 fun GreetingPreview() {
     WhatsAppEjercicio_1Theme {
-        FinalWhatsApp()
+        FinalWhatsApp(navController = rememberNavController())
     }
 }
